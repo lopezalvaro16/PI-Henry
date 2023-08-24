@@ -1,3 +1,61 @@
 .App {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
    text-align: center;
+   background: rgb(136,226,59);
+   background: radial-gradient(circle, rgba(136,226,59,1) 41%, rgba(4,60,110,1) 80%, rgba(0,0,0,1) 79%);
+}
+.padre-card{
+   display: flex;
+   justify-content: center;
+}
+.btn{
+   text-decoration: none;
+}
+.link{
+   text-decoration: none;
+   color: white;
+}
+.nav{
+   margin: 10px;
+   display: flex;
+   justify-content: space-around;
+}
+button {
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   border-radius: 1px;
+   cursor: pointer;
+ }
+ 
+ button:hover {
+   background-color: #45a049;
+ }
+ 
+ button:active {
+   background-color: #3e8e41;
+ }
+.card{
+   -webkit-box-shadow: 14px -8px 26px -7px rgba(161,146,161,1);
+   -moz-box-shadow: 14px -8px 26px -7px rgba(161,146,161,1);
+   box-shadow: 14px -8px 26px -7px rgba(161,146,161,1);
+   padding: 10px;
+   margin-top: 30px;
+   font-size: .5rem;
+   border: 2px solid rgba(21, 6, 43, 0.496);
+   border-radius: 20px;
+   width: 20%;
+   height: 500px;
+   background: rgb(136,226,59);
+   background: radial-gradient(circle, rgba(136,226,59,1) 41%, rgba(4,60,110,1) 46%, rgba(0,0,0,1) 79%);
+   color: white;
+}
+.card img{
+   border-radius: 20px;
+   width:100% ;
+}
+.img-about{
+   height: 650px;
 }
