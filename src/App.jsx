@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Nav from "./components/Nav.jsx";
 import Cards from "./components/Cards";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import About from "./components/About.jsx";
 import Detail from "./components/Detail.jsx";
+import Form from "./components/Form.jsx";
+import ErrorPage from "./view/ErrorPage.jsx";
 import "./App.css";
 
 function App() {
   // Estado para almacenar la lista de personajes
+  const location = useLocation();
   const [characters, setCharacters] = useState([]);
+  const navigate = useNavigate();
+  const [access, setAccess] = useState(false);
+  const EMAIL = "alvaro@gmail.com";
+  const PASSWORD = "12345678";
+
+  function login(userData) {
+    if (userData.password === PASSWORD && userData.email === EMAIL) {
+      setAccess(true);
+      navigate("/home");
+    }
+  }
+  function logoutHandler() {
+    setAccess(false);
+  }
+  useEffect(() => {
+    !access && navigate("/");
+  }, [access]);
 
   // Función para buscar un personaje por su ID
   function searchHandler(id) {
@@ -75,16 +95,25 @@ function App() {
 
   return (
     <div className="App">
-      {/* Componente de navegación con funciones de búsqueda y aleatorización */}
-      <Nav onSearch={searchHandler} randommize={randomHandler} />
+      {/* Renderiza la barra de navegación solo si no estamos en la ruta '/' */}
+      {location.pathname !== "/" && (
+        <Nav
+          onSearch={searchHandler}
+          randommize={randomHandler}
+          logout={logoutHandler}
+        />
+      )}
+
       {/* Definición de rutas en la aplicación */}
       <Routes>
+        <Route path="/" element={<Form login={login} />} />
         <Route
           path="/home"
           element={<Cards characters={characters} onClose={closeHandler} />}
         />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

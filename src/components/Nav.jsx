@@ -19,6 +19,11 @@ function Nav({ onSearch, randommize }) {
           HOME
         </Link>
       </button>
+      <button>
+        <Link className="link" to="/log out">
+          Log out
+        </Link>
+      </button>
     </nav>
   );
 }
