@@ -7,6 +7,7 @@ import About from "./components/About.jsx";
 import Detail from "./components/Detail.jsx";
 import Form from "./components/Form.jsx";
 import ErrorPage from "./view/ErrorPage.jsx";
+import Favorites from "./view/Favorites.jsx";
 import "./App.css";
 
 function App() {
@@ -112,6 +113,7 @@ function App() {
           element={<Cards characters={characters} onClose={closeHandler} />}
         />
         <Route path="/about" element={<About />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
