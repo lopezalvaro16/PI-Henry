@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { sortById, filterByGender, reset } from "../redux/actions/actions";
-import Cards from "../components/Cards";
+import { sortById, filterByGender, reset } from "../../redux/actions/actions";
+import Cards from "../../components/Cards/Cards";
 
 function Favorites() {
   const dispatch = useDispatch();

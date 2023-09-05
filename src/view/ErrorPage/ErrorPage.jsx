@@ -1,4 +1,4 @@
-import errorImg from "../assets/imgError.jpg";
+import errorImg from "../../assets/imgError.jpg";
 function ErrorPage() {
   return (
     <div>

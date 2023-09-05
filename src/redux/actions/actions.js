@@ -1,4 +1,10 @@
-import { ADD_TO_FAVORITES, REMOVE_FAVORITE } from "./action-types";
+import {
+  ADD_TO_FAVORITES,
+  REMOVE_FAVORITE,
+  SORT,
+  FILTER,
+  RESET,
+} from "./action-types";
 
 export function addFavorite(character) {
   return {
@@ -13,6 +19,7 @@ export function removeFavorite(id) {
     payload: id,
   };
 }
+
 export function filterByGender(gender) {
   return {
     type: FILTER,
