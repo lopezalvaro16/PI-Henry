@@ -1,0 +1,114 @@
+body{
+   background: rgb(136,226,59);
+   background: radial-gradient(circle, rgba(136,226,59,1) 41%, rgba(4,60,110,1) 80%, rgba(0,0,0,1) 79%);
+   background-repeat: initial;
+   height: 100vh;
+}
+.App {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   text-align: center;
+   margin: 50px;
+}
+.padre-nav{
+   position: fixed;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 1000;
+}
+.nav{
+   padding: 10px;
+   display: flex;
+   justify-content: space-around;
+   background-color: #131313;
+
+}
+
+.btn{
+   text-decoration: none;
+}
+.link{
+   text-decoration: none;
+   color: white;
+}
+
+
+button {
+   background-color: #118a1598;
+   color: white;
+   border: none;
+   border-radius: 1px;
+   cursor: pointer;
+   border-radius: 2px;
+ }
+ 
+ /* button:hover {
+   background-color: #45a049;
+ }
+ 
+ button:active {
+   background-color: #3e8e41;
+ } */
+
+ /* .padre-card{
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+.card{
+   flex: 0 0 calc(25% - 10px);
+   margin: 15px;
+   -webkit-box-shadow: 14px -8px 26px -7px rgba(161,146,161,1);
+   -moz-box-shadow: 14px -8px 26px -7px rgba(161,146,161,1);
+   box-shadow: 14px -8px 26px -7px rgba(161,146,161,1);
+   padding: 10px;
+   margin-top: 30px;
+   font-size: .5rem;
+   border: 2px solid rgba(21, 6, 43, 0.496);
+   border-radius: 20px;
+   height: 500px;
+   background: rgb(136,226,59);
+   background: radial-gradient(circle, rgba(136,226,59,1) 41%, rgba(4,60,110,1) 46%, rgba(0,0,0,1) 79%);
+   color: white;
+   transition: transform 0.3s ease;
+   cursor: pointer;
+}
+.card:hover {
+   transform: translateY(-7px);
+}
+.img-card{
+   border-radius: 20px;
+}
+.header-card{
+   display: flex;
+   justify-content: space-around;
+   margin: 0px -15px 0px -15px;
+} */
+/* .padre-form{
+   display: flex;
+   justify-content: center;
+}
+form img{
+   position: relative;
+   height: 300px;
+   width: 300px;
+   border-radius: 100%;
+} */
+.img-about{
+   height: 650px;
+}
+/* form{
+   color: white;
+   width: 300px;
+   height: 500px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   border: 2px solid #949292;
+   padding: 10px;
+   margin: 10px;
+   background-color: rgba(153, 164, 140, 0.269);
+} */
