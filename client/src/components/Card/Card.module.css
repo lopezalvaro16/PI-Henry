@@ -1,0 +1,152 @@
+.container {
+  display: inline-block; 
+  margin-right: 20px; 
+}
+.component {
+  box-sizing: border-box;
+  display: grid;
+  width: 250px;
+  height: 400px;
+  background-color: rgba(45, 45, 45, 0.9);
+  transition: 200ms;
+  margin: 20px;
+}
+
+.component {
+  border-radius: 20px;
+  border: 5px solid transparent;
+  background: linear-gradient(black, black) padding-box,
+  linear-gradient(45deg, #FF52E5, #F6D242) border-box;
+}
+
+.component:hover {
+  box-shadow: 3px 3px 20px #FF52E5, -3px -3px 20px #d242f6;
+}
+
+.favorite {
+  background: linear-gradient(black, black) padding-box,
+  linear-gradient(45deg, rgb(155, 0, 227), rgb(200, 47, 255)) border-box;
+}
+
+.favorite:hover {
+  box-shadow: 3px 3px 20px rgb(227, 0, 174), -3px -3px 20px rgb(255, 47, 106);
+}
+
+.id {
+  display: grid;
+  width: 80px;
+  height: 30px;
+  font-size: 11px;
+  justify-self: center;
+  margin-top: -30px;
+}
+
+.id h2 {
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  color: aqua;
+}
+
+.image {
+  display: grid;
+}
+
+.image img {
+  display: grid;
+  justify-self: center;
+  margin-top: -10px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid gray;
+  padding: 3px;
+  transition: 200ms;
+}
+
+/* .image img:hover {
+  scale: 1.1;
+} */
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.close {
+  display: grid;
+  justify-self: end;
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, 0);
+  margin-right: 13px;
+  margin-top: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  align-content: center;
+  border: 0;
+  transition: 200ms;
+}
+
+.close:hover {
+  scale: 1.2;
+}
+
+.fav {
+  display: grid;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  margin: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  align-content: center;
+  border: 0;
+  transition: 200ms;
+}
+
+.fav:hover {
+  scale: 1.2;
+}
+
+.name {
+  color: blueviolet;
+  font-size: 18px;
+}
+
+.dataContainer {
+  display: grid;
+  justify-self: center;
+  align-content: center;
+  width: 95%;
+  height: 100px;
+}
+
+.data {
+  font-size: 14px;
+  color: gray;
+  margin-top: -40px;
+}
+
+.Value {
+  color: aqua;
+}
+
+.masInfo {
+  font-family: 'Orbitron';
+  font-size: 10px;
+  border: 0;
+  width: 70px;
+  height: 30px;
+  border-radius: 10px;
+  color: aliceblue;
+  background-color: blueviolet;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.masInfo:hover {
+  scale: 0.9;
+  background-color: rgb(179, 120, 235);
+}

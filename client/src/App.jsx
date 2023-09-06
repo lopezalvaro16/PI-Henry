@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Nav from "./components/Nav.jsx";
-import Cards from "./components/Cards";
+import Nav from "./components/Nav/Nav";
+import Cards from "./components/Cards/Cards";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import About from "./components/About.jsx";
-import Detail from "./components/Detail.jsx";
-import Form from "./components/Form.jsx";
-import ErrorPage from "./view/ErrorPage.jsx";
-import Favorites from "./view/Favorites.jsx";
+import About from "./view/About/About";
+import Detail from "./view/Detail/Detail";
+// import Form from "./view/Form/Form";
+import ErrorPage from "./view//ErrorPage/ErrorPage";
+import Favorites from "./view/Favorites/Favorites";
+
+import Footer from "./components/Footer/Footer";
+import Landing from "./view/Landing/Landing";
+
 import "./App.css";
 
 function App() {
@@ -19,7 +23,7 @@ function App() {
   const EMAIL = "alvaro@gmail.com";
   const PASSWORD = "12345678";
 
-  function login(userData) {
+  function loginHandler(userData) {
     if (userData.password === PASSWORD && userData.email === EMAIL) {
       setAccess(true);
       navigate("/home");
@@ -96,7 +100,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* Renderiza la barra de navegación solo si no estamos en la ruta '/' */}
       {location.pathname !== "/" && (
         <Nav
           onSearch={searchHandler}
@@ -107,7 +110,16 @@ function App() {
 
       {/* Definición de rutas en la aplicación */}
       <Routes>
-        <Route path="/" element={<Form login={login} />} />
+        {/* <Route path="/" element={<Form login={loginHandler} />} /> */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Landing login={loginHandler} />
+              <Footer />
+            </>
+          }
+        />
         <Route
           path="/home"
           element={<Cards characters={characters} onClose={closeHandler} />}
