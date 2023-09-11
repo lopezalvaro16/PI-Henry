@@ -24,11 +24,15 @@ function App() {
   const PASSWORD = "12345678";
 
   function loginHandler(userData) {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      navigate("/home");
-    }
+    const { email, password } = userData;
+    const URL = "http://localhost:3001/rickandmorty/login/";
+    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+      const { access } = data;
+      setAccess(access);
+      access && navigate("/home");
+    });
   }
+
   function logoutHandler() {
     setAccess(false);
   }
@@ -38,30 +42,29 @@ function App() {
 
   // Función para buscar un personaje por su ID
   function searchHandler(id) {
-    // Convierte el ID a un número si es una cadena
-    const numericId = parseInt(id, 10);
+    // // Convierte el ID a un número si es una cadena
+    // const numericId = parseInt(id, 10);
 
-    // Comprobar si el ID ya existe en la lista de personajes
-    const isDuplicate = characters.some(
-      (character) => character.id === numericId
-    );
+    // // Comprobar si el ID ya existe en la lista de personajes
+    // const isDuplicate = characters.some(
+    //   (character) => character.id === numericId
+    // );
 
-    if (isDuplicate) {
-      window.alert("¡Este ID ya está en la lista!");
-      return; // Salir de la función si el ID ya está en la lista
-    }
+    // if (isDuplicate) {
+    //   window.alert("¡Este ID ya está en la lista!");
+    //   return; // Salir de la función si el ID ya está en la lista
+    // }
 
     // Realizar una solicitud HTTP para obtener el personaje por su ID
-    axios(
-      `https://rym2-production.up.railway.app/api/character/${numericId}?key=henrym-lopezalvaro16`
-    ).then(({ data }) => {
-      if (data.name) {
-        // Agregar el personaje a la lista si se encuentra
-        setCharacters((oldChars) => [...oldChars, data]);
-      } else {
-        window.alert("¡No hay personajes con este ID!");
+    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
+      ({ data }) => {
+        if (data.name) {
+          setCharacters((oldChars) => [...oldChars, data]);
+        } else {
+          window.alert("¡No hay personajes con este ID!");
+        }
       }
-    });
+    );
   }
 
   // Función para cerrar un personaje
