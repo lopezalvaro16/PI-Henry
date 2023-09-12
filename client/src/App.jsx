@@ -12,7 +12,7 @@ import Favorites from "./view/Favorites/Favorites";
 import Footer from "./components/Footer/Footer";
 import Landing from "./view/Landing/Landing";
 
-import "./App.css";
+import style from "./App.module.css";
 
 function App() {
   // Estado para almacenar la lista de personajes
@@ -23,14 +23,20 @@ function App() {
   const EMAIL = "alvaro@gmail.com";
   const PASSWORD = "12345678";
 
-  function loginHandler(userData) {
+  async function loginHandler(userData) {
     const { email, password } = userData;
-    const URL = "http://localhost:3001/rickandmorty/login/";
-    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+    const URL = `http://localhost:3001/rickandmorty/login/?email=${email}&password=${password}`;
+
+    try {
+      const { data } = await axios.get(URL);
       const { access } = data;
       setAccess(access);
-      access && navigate("/home");
-    });
+      if (access) {
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
   }
 
   function logoutHandler() {
@@ -41,30 +47,29 @@ function App() {
   }, [access]);
 
   // Función para buscar un personaje por su ID
-  function searchHandler(id) {
-    // // Convierte el ID a un número si es una cadena
-    // const numericId = parseInt(id, 10);
+  async function searchHandler(id) {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/rickandmorty/character/${id}`
+      );
 
-    // // Comprobar si el ID ya existe en la lista de personajes
-    // const isDuplicate = characters.some(
-    //   (character) => character.id === numericId
-    // );
+      // Verificar si el personaje ya existe en la lista
+      const isCharacterAlreadyAdded = characters.some(
+        (character) => character.id === data.id
+      );
 
-    // if (isDuplicate) {
-    //   window.alert("¡Este ID ya está en la lista!");
-    //   return; // Salir de la función si el ID ya está en la lista
-    // }
-
-    // Realizar una solicitud HTTP para obtener el personaje por su ID
-    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
-      ({ data }) => {
+      if (isCharacterAlreadyAdded) {
+        window.alert("¡Este personaje ya fue agregado!");
+      } else {
         if (data.name) {
           setCharacters((oldChars) => [...oldChars, data]);
         } else {
           window.alert("¡No hay personajes con este ID!");
         }
       }
-    );
+    } catch (error) {
+      console.error("Error during search:", error);
+    }
   }
 
   // Función para cerrar un personaje
@@ -78,31 +83,23 @@ function App() {
 
   // Función para agregar un personaje aleatorio a la lista
   function randomHandler() {
-    let memory = [];
+    let memoria = [];
 
-    // Generar un ID de personaje aleatorio
     let randomId = (Math.random() * 826).toFixed();
+
     randomId = Number(randomId);
 
-    if (!memory.includes(randomId)) {
-      // Evitar duplicados verificando en la memoria
-      memory.push(randomId);
-      // Realizar una solicitud HTTP para obtener el personaje aleatorio
-      axios(
-        `https://rym2-production.up.railway.app/api/character/${randomId}?key=henrym-lopezalvaro16`
-      ).then(({ data }) => {
-        if (data.name) {
-          // Agregar el personaje a la lista si se encuentra
-          setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          window.alert("¡No hay personajes con este ID!");
-        }
-      });
+    if (!memoria.includes(randomId)) {
+      memoria.push(randomId);
+      searchHandler(randomId);
+    } else {
+      alert("Ese personaje ya fue agregado");
+      return;
     }
   }
 
   return (
-    <div className="App">
+    <div className={style.App}>
       {location.pathname !== "/" && (
         <Nav
           onSearch={searchHandler}

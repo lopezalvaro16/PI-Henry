@@ -6,15 +6,15 @@ function Detail() {
   const { id } = useParams();
   const [character, setCharacter] = useState({});
   useEffect(() => {
-    axios(
-      `https://rym2-production.up.railway.app/api/character/${id}?key=henrym-lopezalvaro16`
-    ).then(({ data }) => {
-      if (data.name) {
-        setCharacter(data);
-      } else {
-        window.alert("¡No hay personajes con este ID!");
+    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
+      ({ data }) => {
+        if (data.name) {
+          setCharacter(data);
+        } else {
+          window.alert("¡No hay personajes con este ID!");
+        }
       }
-    });
+    );
     return setCharacter({});
   }, [id]);
 

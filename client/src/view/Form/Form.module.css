@@ -1,23 +1,29 @@
 .container {
   display: grid;
   justify-self: center;
-  background-color: rgba(45, 45, 45, 0.9);
+  /* background-color: rgba(45, 45, 45, 0.9); */
   width: 300px;
   height: 400px;
-  border-radius: 20px;
-  border: 5px solid transparent;
-  background: linear-gradient(black, black) padding-box,
-  linear-gradient(45deg, #FF52E5, #F6D242) border-box;
-  margin-top: 50px;
+  /* border-radius: 20px; */
+  /* border: 5px solid transparent; */
+  background: linear-gradient(rgba(102, 216, 50, 0.247), rgba(94, 141, 74, 0.925)) padding-box,
+  linear-gradient(45deg, #7fef709f, #90b4556e) border-box;
+  margin-top: 70px;
   transition: 200ms;
+  border-radius: 20px;
+
+  border-radius: 59px;
+
+  box-shadow:  26px 26px 52px #354835,
+               -26px -26px 52px #75b975;
 }
 
 .container:hover {
-  box-shadow: 3px 3px 20px #FF52E5, -3px -3px 20px #F6D242;
+  box-shadow: 3px 3px 20px #d0ffbd, -3px -3px 20px #42f642;
 }
 
 h2 {
-  color: blueviolet;
+  color: rgb(255, 255, 255);
   margin-top: 30px;
   margin-bottom: 50px;
 }
@@ -39,7 +45,7 @@ input {
 }
 
 .error {
-  color: gray;
+  color: rgb(255, 255, 255);
   font-size: 12px;
   width: 95%;
 }
@@ -51,7 +57,7 @@ input {
   width: 70px;
   height: 30px;
   border-radius: 10px;
-  background-color: blueviolet;
+  background-color: rgb(222, 50, 238);
   color: aliceblue;
   transition: 200ms;
   margin-top: 50px;

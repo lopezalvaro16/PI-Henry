@@ -16,6 +16,8 @@
 .logo {
   height: 200px;
   margin-bottom: -90px;
+  background: #000000;
+
 }
 
 .container {
@@ -34,4 +36,7 @@
 
 img {
   width: 300px;
+  border-radius: 50px;
+  box-shadow:  28px -28px 56px #163016,
+  -28px 28px 56px #1b311b;
 }

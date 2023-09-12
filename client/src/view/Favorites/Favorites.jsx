@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { sortById, filterByGender, reset } from "../../redux/actions/actions";
 import Cards from "../../components/Cards/Cards";
+import styles from "./Favorites.module.css";
 
 function Favorites() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function Favorites() {
   }
 
   return (
-    <div>
+    <div className={styles.padre}>
       <select placeholder="Gender" onChange={filterHandler}>
         {["Male", "Female", "unknown", "Genderless"].map((gender) => (
           <option key={gender} value={gender}>

@@ -32,10 +32,10 @@ function Card(props) {
 
   function handleFavorite(character) {
     if (!isFav) {
-      addFavorite(character); //{}
+      addFavorite(character);
       setFav(true);
     } else {
-      removeFavorite(character); //id
+      removeFavorite(character);
       setFav(false);
     }
   }
