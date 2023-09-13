@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearch }) {
   const [id, setId] = useState("");
@@ -16,12 +17,11 @@ export default function SearchBar({ onSearch }) {
         placeholder="Search Character"
       />
       <button
+        className={styles.search}
         onClick={() => {
           onSearch(id);
         }}
-      >
-        Agregar
-      </button>
+      ></button>
     </div>
   );
 }

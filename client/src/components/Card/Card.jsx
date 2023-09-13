@@ -11,6 +11,25 @@ function Card(props) {
   const [isFav, setFav] = useState(false);
   const [closeBtn, setCloseBtn] = useState(true);
 
+  const playSoundCorazon = () => {
+    const audioElement = document.getElementById("sonidoCorazon");
+    if (audioElement) {
+      audioElement.play();
+    }
+  };
+  const playSoundEliminar = () => {
+    const audioElement = document.getElementById("sonidoEliminar");
+    if (audioElement) {
+      audioElement.play();
+    }
+  };
+  const playSoundCerrar = () => {
+    const audioElement = document.getElementById("sonidoCerrar");
+    if (audioElement) {
+      audioElement.play();
+    }
+  };
+
   function navigateHandler() {
     navigate(`/detail/${character.id}`);
   }
@@ -22,7 +41,6 @@ function Card(props) {
   }, []);
 
   useEffect(() => {
-    //[rick, morty, mr poppybutthole]
     favorites.forEach((fav) => {
       if (fav.id === character.id) {
         setFav(true);
@@ -31,12 +49,14 @@ function Card(props) {
   }, [favorites]);
 
   function handleFavorite(character) {
-    if (!isFav) {
-      addFavorite(character);
-      setFav(true);
-    } else {
+    if (isFav) {
+      playSoundEliminar(); // Reproduce el sonido de eliminación
       removeFavorite(character);
-      setFav(false);
+      setFav(false); // Marca que el personaje ya no es un favorito
+    } else {
+      playSoundCorazon(); // Reproduce el sonido del corazón
+      addFavorite(character);
+      setFav(true); // Marca que el personaje es un favorito
     }
   }
 
@@ -44,11 +64,26 @@ function Card(props) {
     <div className={styles.container}>
       <div className={styles.component}>
         <div className={styles.buttons}>
+          <audio
+            id="sonidoCorazon"
+            src="https://ia803107.us.archive.org/21/items/maelstrom_mac_game_sounds/Pause.mp3"
+          ></audio>
+          <audio
+            id="sonidoEliminar"
+            src="https://archive.org/download/maelstrom_mac_game_sounds/Photon%20Shot.mp3"
+          ></audio>
+          <audio
+            id="sonidoCerrar"
+            src="https://archive.org/download/maelstrom_mac_game_sounds/Multiplier%20Appears.mp3"
+          ></audio>
           {closeBtn && (
             <button
               className={styles.fav}
               onClick={() => {
-                onClose(character.id);
+                playSoundCerrar();
+                setTimeout(() => {
+                  onClose(character.id);
+                }, 700);
               }}
             >
               X

@@ -13,6 +13,33 @@ function Form({ login }) {
     password: "ingresa un password",
   });
 
+  //Audio
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+
+  const playSoundSubmit = () => {
+    const audioElement = document.getElementById("sonidoSubmit");
+    if (audioElement) {
+      audioElement.play();
+    }
+  };
+
+  function toggleAudio() {
+    var audio = document.getElementById("myAudio");
+    if (audio.paused) {
+      audio.play();
+      setIsAudioPlaying(true);
+    } else {
+      audio.pause();
+      setIsAudioPlaying(false);
+    }
+  }
+
+  function handleAudioEnded() {
+    var audio = document.getElementById("myAudio");
+    audio.currentTime = 0;
+    audio.play();
+  }
+
   function handleChange(event) {
     setUserData({
       ...userData,
@@ -26,17 +53,30 @@ function Form({ login }) {
 
   function submitHandler(event) {
     event.preventDefault();
-
-    if (!errors.email && !errors.password) {
-      login(userData);
-    } else {
-      alert("Datos incorrectos");
-    }
+    playSoundSubmit();
+    setTimeout(() => {
+      if (!errors.email && !errors.password) {
+        login(userData);
+      } else {
+        alert("Datos incorrectos");
+      }
+    }, 500);
   }
 
   return (
     <>
-      <div className={styles.container}>
+      <audio
+        id="myAudio"
+        src="https://www.televisiontunes.com/uploads/audio/Game%20of%20Thrones%20-%20Mereen.mp3"
+        onMouseEnter={handleAudioEnded}
+        onMouseLeave={handleAudioEnded}
+      ></audio>
+
+      <div
+        onMouseEnter={toggleAudio}
+        onMouseLeave={toggleAudio}
+        className={styles.container}
+      >
         <h2>Inicia secion</h2>
         <form onSubmit={submitHandler}>
           <div className={styles.email}>
@@ -62,7 +102,16 @@ function Form({ login }) {
             )}
           </div>
           <div>
-            <button className={styles.submit} type="submit">
+            <audio
+              id="sonidoSubmit"
+              src="https://archive.org/download/real-war-game-rip/mseOVER3.mp3"
+              onClick={submitHandler}
+            ></audio>
+            <button
+              onClick={submitHandler}
+              className={styles.submit}
+              type="submit"
+            >
               Submit
             </button>
           </div>

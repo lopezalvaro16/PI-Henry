@@ -21,21 +21,32 @@ function Favorites() {
 
   return (
     <div className={styles.padre}>
-      <select placeholder="Gender" onChange={filterHandler}>
+      <select
+        className={styles.selector}
+        placeholder="Gender"
+        onChange={filterHandler}
+      >
         {["Male", "Female", "unknown", "Genderless"].map((gender) => (
-          <option key={gender} value={gender}>
+          <option className={styles.option} key={gender} value={gender}>
             {gender}
           </option>
         ))}
       </select>
-      <select placeholder="Sort" onChange={sortHandler}>
+      <select
+        className={styles.selector}
+        placeholder="Sort"
+        onChange={sortHandler}
+      >
         {["Ascendente", "Descendente"].map((order) => (
-          <option key={order} value={order}>
+          <option className={styles.option} key={order} value={order}>
             {order}
           </option>
         ))}
       </select>
-      <button onClick={resetHandler}>RESET</button>
+      <button className={styles.boton} onClick={resetHandler}>
+        RESET
+      </button>
+
       <Cards characters={favorites} />
     </div>
   );

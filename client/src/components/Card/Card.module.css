@@ -16,13 +16,13 @@
 .component {
   border-radius: 20px;
   border: 5px solid transparent;
-  background: linear-gradient(black, black) padding-box,
+  background: linear-gradient(rgba(45, 160, 41, 0.288), rgba(0, 0, 0, 0.877)) padding-box,
   linear-gradient(45deg, #3b443b, #72f642) border-box;
 }
 
 .component:hover {
   cursor: pointer;
-  box-shadow: 3px 3px 20px #1a1b1a, -3px -3px 20px #2b2f29;
+  box-shadow: 3px 3px 20px #bec5be, -3px -3px 20px #2b2f29;
 }
 
 .favorite {

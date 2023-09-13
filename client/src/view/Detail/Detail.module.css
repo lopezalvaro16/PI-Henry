@@ -1,0 +1,70 @@
+
+.padre{
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  background-image: url("https://images3.alphacoders.com/812/812062.png");
+  background-size: cover;
+}
+.card{
+  padding: 20px;
+  background-color: rgba(138, 58, 204, 0.73);
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  margin: 150px 0 0 100px;
+}
+.imagen{
+  display: flex;
+  align-items: center;
+
+}
+.imagen img{
+  border-radius: 0%;
+  margin: 10px;
+  height: 280px;
+  -webkit-box-shadow: -1px 10px 5px 0px rgba(0,0,0,0.42);
+  -moz-box-shadow: -1px 10px 5px 0px rgba(0,0,0,0.42);
+  box-shadow: -1px 10px 5px 0px rgba(0,0,0,0.42);
+}
+.descripcion{
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px;
+}
+.descripcion h2{
+  margin: 10px;
+  font-size: 1.5rem;
+  text-align: start;
+  height: 300px;
+  Font-family: Consolas, monaco, monospace
+}
+
+      /* Estilo del contenedor de la tarjeta */
+.cardContainer {
+  position: relative;
+  animation: spin 3s linear infinite; /* Animación para girar */
+}
+
+/* Animación para girar los bordes */
+@keyframes spin {
+  0% {
+    border: 2px solid rgb(255, 255, 255);
+  }
+  25% {
+    border: 2px solid rgb(246, 222, 197);
+  }
+  50% {
+    border: 2px solid rgb(255, 12, 12);
+  }
+  75% {
+    border: 2px solid rgb(251, 153, 153);
+  }
+  100% {
+    border: 2px solid rgb(255, 223, 206);
+  }
+}
