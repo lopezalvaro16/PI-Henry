@@ -17,7 +17,7 @@ function Detail() {
       }
     );
     return setCharacter({});
-  }, [id]);
+  }, []);
 
   return (
     <div className={styles.padre}>

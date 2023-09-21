@@ -1,15 +1,20 @@
 .padre{
+  background-color: #282c34;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+  padding: 10px;
+  height: 30px;
 }
 .nav{
-  padding: 10px;
   display: flex;
   justify-content: space-around;
-  background-color: #131313;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  /* padding: 10px; */
 }
 
 .btn{
@@ -17,17 +22,29 @@
 }
 .link{
   text-decoration: none;
-  color: white;
+  color: #ffffff; 
+  font-weight: bold;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
 
+.link:hover {
+  color:#788177;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: border-color 2s ease;
+  background-color: transparent;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }
 
 
 
-button {
-  background-color: #00000098;
-  color: white;
-  border: none;
-  /* border-radius: 1px; */
-  cursor: pointer;
-  border-radius: 2px;
+button:focus {
+  outline: none;
 }

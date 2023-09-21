@@ -1,20 +1,128 @@
 .padre{
   padding: 100px;
 }
+.padreSelect{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #282c34;
+  width: 100%;
+  margin: 0;
+  border: 1px solid rgba(66, 65, 65, 0.26);
+}
 .selector{
   padding: 5px;
   margin-top: 0;
-  background-color: black;
+  margin: 10px;
+  background-color: #282c34;
   border-radius: 6px;
-  color: white;
+  color:black;
   appearance: none;
   scroll-behavior: smooth;
+  border: none;
 }
 
 .option{
   color: white;
   background-color: black;
   scroll-behavior: smooth;
+  margin: 0;
+}
+
+.boton{
+  color: aliceblue;
+}
+/* En tu archivo CSS (Favorites.module.css) */
+
+/* Estilo para el contenedor del dropdown personalizado */
+.customDropdown {
+  display: inline-block;
+  margin-right: 20px;
+  position: relative;
+}
+
+/* Etiqueta del dropdown */
+.dropdownLabel {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Estilo para el contenedor principal del dropdown */
+.dropdown {
+  position: relative;
+  width: 150px; /* Ajusta el ancho según tus necesidades */
+  background-color: #282c34;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Opción seleccionada o marcador de posición */
+.selectedOption {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Estilo para el marcador de posición si no se ha seleccionado ninguna opción */
+.placeholder {
+  color: #ccc;
+}
+
+/* Estilo para la lista de opciones */
+.dropdownOptions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #282c34;
+  border-radius: 0 0 6px 6px;
+  max-height: 150px; /* Ajusta la altura máxima según tus necesidades */
+  overflow-y: auto;
+  display: none;
 }
 
 
+
+/* Muestra la lista de opciones al hacer clic en el contenedor del dropdown */
+.customDropdown:hover .dropdownOptions {
+  display: block;
+}
+.boton{
+  background:#0b77118a;
+  color:#fff;
+  border:none;
+  position:relative;
+  font-size:1.6em;
+  padding: 10px;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.boton:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+.boton:before,.boton:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1aab1a;
+  transition:400ms ease all;
+}
+.boton:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.boton:hover:before,.boton:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

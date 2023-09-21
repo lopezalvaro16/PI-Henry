@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { validar } from "../../helpers";
 import styles from "./Form.module.css";
-
 function Form({ login }) {
   const [userData, setUserData] = useState({
     email: "",
@@ -9,8 +8,8 @@ function Form({ login }) {
   });
 
   const [errors, setErrors] = useState({
-    email: "ingresa un email",
-    password: "ingresa un password",
+    email: "Ingresa un email",
+    password: "Ingresa un password",
   });
 
   //Audio
@@ -57,6 +56,7 @@ function Form({ login }) {
     setTimeout(() => {
       if (!errors.email && !errors.password) {
         login(userData);
+        playMusic();
       } else {
         alert("Datos incorrectos");
       }
@@ -67,7 +67,7 @@ function Form({ login }) {
     <>
       <audio
         id="myAudio"
-        src="https://www.televisiontunes.com/uploads/audio/Game%20of%20Thrones%20-%20Mereen.mp3"
+        src="https://archive.org/download/md_music_animaniacs/01%20-%20Konami%20Logo%20-%20Seiya%20Murai.mp3"
         onMouseEnter={handleAudioEnded}
         onMouseLeave={handleAudioEnded}
       ></audio>
@@ -77,7 +77,7 @@ function Form({ login }) {
         onMouseLeave={toggleAudio}
         className={styles.container}
       >
-        <h2>Inicia secion</h2>
+        <h2>Inicia sesion</h2>
         <form onSubmit={submitHandler}>
           <div className={styles.email}>
             <input

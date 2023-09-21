@@ -9,12 +9,13 @@
 .card{
   padding: 20px;
   background-color: rgba(138, 58, 204, 0.73);
-  margin: 50px;
+  /* margin: 50px; */
   display: flex;
   justify-content: center;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 4px;
   margin: 150px 0 0 100px;
+
 }
 .imagen{
   display: flex;

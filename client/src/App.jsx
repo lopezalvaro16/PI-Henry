@@ -8,11 +8,11 @@ import Detail from "./view/Detail/Detail";
 // import Form from "./view/Form/Form";
 import ErrorPage from "./view//ErrorPage/ErrorPage";
 import Favorites from "./view/Favorites/Favorites";
-
+import Swal from "sweetalert2";
 import Footer from "./components/Footer/Footer";
 import Landing from "./view/Landing/Landing";
-
 import style from "./App.module.css";
+import AudioPlayer from "./components/SonidoInput/SonidoIni";
 
 function App() {
   // Estado para almacenar la lista de personajes
@@ -28,14 +28,18 @@ function App() {
     const URL = `http://localhost:3001/rickandmorty/login/?email=${email}&password=${password}`;
 
     try {
-      const { data } = await axios.get(URL);
+      const { email, password } = userData;
+      const URL = "http://localhost:3001/rickandmorty/login/";
+      const { data } = await axios(
+        URL + `?email=${email}&password=${password}`
+      );
       const { access } = data;
       setAccess(access);
       if (access) {
         navigate("/home");
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      alert(error);
     }
   }
 
@@ -49,9 +53,21 @@ function App() {
   // Función para buscar un personaje por su ID
   async function searchHandler(id) {
     try {
+      if (!id) {
+        // El usuario no ingresó un ID
+        Swal.fire("Por favor, ingresa un ID de personaje.");
+        return; // Salimos de la función para evitar más procesamiento
+      }
+
       const { data } = await axios.get(
         `http://localhost:3001/rickandmorty/character/${id}`
       );
+
+      if (data.error) {
+        // El personaje no fue encontrado
+        Swal.fire("No se encontró un personaje con este ID.");
+        return; // Salimos de la función
+      }
 
       // Verificar si el personaje ya existe en la lista
       const isCharacterAlreadyAdded = characters.some(
@@ -59,12 +75,16 @@ function App() {
       );
 
       if (isCharacterAlreadyAdded) {
-        window.alert("¡Este personaje ya fue agregado!");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "¡Este personaje ya fue agregado!",
+        });
       } else {
         if (data.name) {
           setCharacters((oldChars) => [...oldChars, data]);
         } else {
-          window.alert("¡No hay personajes con este ID!");
+          Swal.fire("¡No hay personajes con este ID!");
         }
       }
     } catch (error) {

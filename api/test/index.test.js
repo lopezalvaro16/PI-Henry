@@ -1,6 +1,7 @@
-const app = require("../src/app");
+const server = require("../src/app");
 const session = require("supertest");
-const agent = session(app);
+
+const agent = session(server);
 
 describe("Test de Rutas", () => {
   describe("GET / /rickandmorty/character/:id", () => {
@@ -8,13 +9,14 @@ describe("Test de Rutas", () => {
       await agent.get("/rickandmorty/character/1").expect(200);
     });
 
-    it("Si hay error responde con el status 500", async () => {
+    it("Si hay un error responde con el status 500", async () => {
       await agent.get("/rickandmorty/character/3312").expect(500);
     });
-    it('Responde con un objeto con las propiedades: "id", "name", "species", "gender" ,"origin", "status" e "image"', async () => {
+
+    it('Responde con un objeto con las propiedades: "id", "name", "species", "gender", "origin", "status" e "image"', async () => {
       const { body } = await agent.get("/rickandmorty/character/1");
 
-      const atributos = [
+      const propiedades = [
         "id",
         "name",
         "species",
@@ -24,64 +26,67 @@ describe("Test de Rutas", () => {
         "image",
       ];
 
-      atributos.map((atributo) => {
-        expect(body).toContain(atributo);
-      });
-    });
+      // const keys = Object.keys(body) // ["id", "name", "species", "gender", "origin", "status" , "image"]
+      //   propiedades.forEach((prop) => {
+      //   expect(keys).toHaveProperty(prop);
+      // });
 
-    describe("GET / rickandmorty/login", () => {
-      it("Evalua que la informacion sea correcta", async () => {
-        const { body } = await agent.get(
-          "/rickandmorty/login?email=alvaro@gmail.com&password=12345678"
-        );
-        expect(body.access).toEqual(true);
-      });
-    });
-    describe("GET / rickandmorty/login", () => {
-      it("Evalua que la informacion sea incorrecta", async () => {
-        const { body } = await agent.get(
-          "/rickandmorty/login?email=alvarado@gmail.com&password=123456123"
-        );
-        expect(body.access).toEqual(false);
+      propiedades.forEach((prop) => {
+        expect(body).toHaveProperty(prop);
       });
     });
   });
-  describe("POST /rinckandmorty/fav", () => {
-    const testCharacterA = { id: 1, name: "TEST A" };
-    const testCharacterB = { id: 1, name: "TEST B" };
+  describe("GET / rickandmorty/login", () => {
+    // let access = {access:true}
 
-    it("Devuelve un arreglo con la info enviada de A", async () => {
-      const { body } = await agent
-        .post("/rickandmorty/fav")
-        .send(testCharacterA);
-
-      expect(body).toContainEqual(testCharacterA);
+    it("Informacion correcta pase usted", async () => {
+      const { body } = await agent.get(
+        "/rickandmorty/login?email=gama@gmail.com&password=1password"
+      );
+      expect(body.access).toEqual(true);
     });
 
-    it("Devuelve un arreglo con la info enviada de B", async () => {
-      const { body } = await agent
-        .post("/rickandmorty/fav")
-        .send(testCharacterB);
-      expect(body).toContainEqual(testCharacterA);
-      expect(body).toContainEqual(testCharacterB);
+    it("Informacion incorrecta 'You Shall Not Pass 🧙‍♂️'", async () => {
+      const { body } = await agent.get(
+        "/rickandmorty/login?email=batrolomiau@gmail.com&password=elmalo"
+      );
+      expect(body.access).toEqual(false);
+    });
+  });
+
+  describe("POST /rickandmorty/fav", () => {
+    const testCharA = { id: 1, name: "TEST A" };
+    const testCharB = { id: 2, name: "TEST B" };
+
+    it("DEvuelve un array con la informacion enviada", async () => {
+      const { body } = await agent.post("/rickandmorty/fav").send(testCharA);
+
+      expect(body).toContainEqual(testCharA); //[{}]
+    });
+
+    it("DEvuelve un array con la informacion enviada", async () => {
+      const { body } = await agent.post("/rickandmorty/fav").send(testCharB);
+
+      expect(body).toContainEqual(testCharA);
+      expect(body).toContainEqual(testCharB);
     });
   });
 
   describe("DELETE /rickandmorty/fav/:id", () => {
-    const testCharacterA = { id: 1, name: "TEST A" };
-    const testCharacterB = { id: 1, name: "TEST B" };
+    const testCharA = { id: 1, name: "TEST A" };
+    const testCharB = { id: 2, name: "TEST B" };
 
-    it("Si el personaje no se elimina, devuelve el mismo arreglo", async () => {
+    it("Si no se elimina ningun personaje devuelve el mismo array", async () => {
       const { body } = await agent.delete("/rickandmorty/fav/3312");
 
-      expect(body).toContainEqual(testCharacterA);
-      expect(body).toContainEqual(testCharacterB);
+      expect(body).toContainEqual(testCharA);
+      expect(body).toContainEqual(testCharB);
     });
 
     it("Elimina al personaje recibido por ID", async () => {
       const { body } = await agent.delete("/rickandmorty/fav/2");
 
-      expect(body).not.toContainEqual(testCharacterB);
+      expect(body).not.toContainEqual(testCharB);
     });
   });
 });

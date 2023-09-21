@@ -66,7 +66,7 @@ function Card(props) {
         <div className={styles.buttons}>
           <audio
             id="sonidoCorazon"
-            src="https://ia803107.us.archive.org/21/items/maelstrom_mac_game_sounds/Pause.mp3"
+            src="https://archive.org/download/ff6_sounds/savepnt.mp3"
           ></audio>
           <audio
             id="sonidoEliminar"
